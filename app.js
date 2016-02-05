@@ -11,28 +11,85 @@ function randomMargin(targetBox) {
 
 var numberOfBoxes = 1;
 var colorArray = ["red", "green", "blue", "grey","pink", "purple","yellow","orange", "skyblue","violet","Cyan","Maroon"];
-var friends = ["Michael", "Ivan", "Mercedes", "Jehnean","Cindy","Daniel","Jasmine"];
-console.log(colorArray.length);
+var friends = [
+"Michael", 
+"Ivan", 
+"Mercedes", 
+"Jehnean",
+"Cindy",
+"Daniel",
+"Jasmine",
+"Ryder",
+"Caleb",
+"Lucca",
+"Jessica",
+"Anna",
+"Monq",
+"Vien",
+"Al",
+"Dan F.",
+"Annabelle",
+"Derek",
+"Tak",
+"Josh",
+"Matt",
+"Christina",
+"Leslie",
+"Tashi",
+"Nidhi",
+"Franchini",
+"Will",
+"Lena",
+"Nich",
+"Alex",
+"Ben",
+"Illias",
+"Dani"];
+
+//console.log(friends);
+//console.log(colorArray.length);
 
 randomColor = Math.floor((Math.random()*11)+1);
-randomFriends = Math.floor(Math.random()*7);
+randomFriends = Math.floor((Math.random()*32)+1);
+nonWdiFriends = Math.floor((Math.random()*10)+40);
 var order = randomFriends;
-console.log(randomColor);
+console.log(order);
 
-
+var boxArray = [];
 var boxPicker;
-var difficulty=11;
+var difficulty=10;
 var location;
-$("#startMe").click(function() {
-boxPicker = (Math.floor(Math.random()*difficulty)+1);
+var newBoxId;
+var arrayLength;
+boxPicker = (Math.floor(Math.random()*(difficulty-1)+1));
 location = ("box"+boxPicker);
+$("#startMe").click(function() {
 var myImage = $("<img>").attr("src","assets/images/image"+order+".png").attr("class","peek").attr("id","p1");
-//var myOtherImage = $("<img>").attr("src","assets/images/image"+3+".png").attr("class","peek").attr("id","p2");
+//make id and 3 random
+//var myOtherImage = $("<img>").attr("src","assets/images/image"+nonWdiFriends+".jpg").attr("class","nonWdi").attr("id","nonWdiFriends");
 $("#box"+boxPicker).html(myImage);
-//$("#box"+3).html(myOtherImage);
-setTimeout(function() {$("#p1").hide();}, 500);
-//setTimeout(function() {$("#p1").hide();}, 500);
-setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},500);
+console.log(myImage);
+//make 3 random
+//$("#box"+boxPicker).html(myOtherImage);
+
+/*------------insert snippet here */
+boxArray.splice(boxPicker,1);
+arrayLength = boxArray.length-1;
+newRandomPick = Math.floor((Math.random()*arrayLength)+1);
+newBoxId = boxArray[newRandomPick];
+var myOtherImage = $("<img>").attr("src","assets/images/image"+nonWdiFriends+".jpg").attr("class","nonWdi").attr("id","nonWdiFriends");
+console.log("new id is"+newBoxId);
+$("#"+newBoxId).html(myOtherImage);
+//alert(""+newBoxId);
+console.log(myOtherImage);
+/*--------------End Snippet Here*/
+setTimeout(function() {$("#p1").hide();}, 1000);
+
+//hide p2
+setTimeout(function() {$("#nonWdiFriends").hide();}, 1000);
+setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},1000);
+
+
 
 });
 
@@ -42,6 +99,7 @@ setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},50
 //insertBox();
 function insertBox(){
 	var box = $("<div>").attr("class", "emptyBox").attr("id", "box" + numberOfBoxes);
+	boxArray.push("box"+numberOfBoxes);
 	$(".container").append(box);
 	randomMargin(numberOfBoxes);
 	numberOfBoxes += 1;	
