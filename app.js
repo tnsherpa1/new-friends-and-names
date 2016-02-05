@@ -1,72 +1,71 @@
-//loads when DOM is ready
 $(document).ready(function(){
 
-//function randomMargin, takeas a parameter
 function randomMargin(targetBox) {
-	//checks no of calls
   console.log("random margin called");
-	var top = Math.floor(Math.random()*25);
-	var left = Math.floor(Math.random()*900);
-	//assigns targetBox as id
+	var top = Math.floor(Math.random()*100);
+	var left = Math.floor(Math.random()*100);
 	var targetElement = $("#box" + targetBox);
-	//adds css margin-top to to targetBox id
 	targetElement.css("margin-top",top+"px");
-	//adds css margin-left to targetBox id
 	targetElement.css("margin-left",left+"px");
 }
 
-//declares variable numberOfBoxes
 var numberOfBoxes = 1;
-function insertBox(){
-	var box = $("<div>").attr("class", "emptyBox").attr("id", "box" + numberOfBoxes);
-	$(".container").append(box);
-	randomMargin(numberOfBoxes);
-	numberOfBoxes += 1;
-}
+var colorArray = ["red", "green", "blue", "grey","pink", "purple","yellow","orange", "skyblue","violet","Cyan","Maroon"];
+var friends = ["Michael", "Ivan", "Mercedes", "Jehnean","Cindy","Daniel","Jasmine"];
+console.log(colorArray.length);
+
+randomColor = Math.floor((Math.random()*11)+1);
+randomFriends = Math.floor(Math.random()*7);
+var order = randomFriends;
+console.log(randomColor);
 
 
-insertBox();
-insertBox();
-insertBox();
-insertBox();
-insertBox();
-
-
-
-//console.log(numberOfBoxes);
-var marginLeft;
-var marginTop;
 var boxPicker;
-
-/*boxPicker = (Math.floor(Math.random()*3)+1);
-//console.log("this"+boxPicker);
-//$("#box"+boxPicker).html("#p1");*/
-
-/*$(".emptyBox").click(function(){
-	marginLeft = $(this).css("margin-left");
-	marginTop = $(this).css("margin-top");
-	});*/
-	//jQuery event listener that shows and hides images
+var difficulty=11;
+var location;
 $("#startMe").click(function() {
-$("#p1").css("margin-left",marginLeft);
-$("#p1").css("margin-top",marginTop);
-
-
-boxPicker = (Math.floor(Math.random()*5)+1);
-console.log("this"+boxPicker);
-var myImage = $("<img>").attr("src","assets/images/panda1.jpg").attr("class","peek").attr("id","p1");
+boxPicker = (Math.floor(Math.random()*difficulty)+1);
+location = ("box"+boxPicker);
+var myImage = $("<img>").attr("src","assets/images/image"+order+".png").attr("class","peek").attr("id","p1");
+//var myOtherImage = $("<img>").attr("src","assets/images/image"+3+".png").attr("class","peek").attr("id","p2");
 $("#box"+boxPicker).html(myImage);
+//$("#box"+3).html(myOtherImage);
+setTimeout(function() {$("#p1").hide();}, 500);
+//setTimeout(function() {$("#p1").hide();}, 500);
+setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},500);
 
-
-//$("#p1").show();
-setTimeout(function() { $("#p1").hide(); }, 800);
-//setTimeout(function(){$("h1").prepend("Where am I?");},500);
 });
 
 
 
 
 //insertBox();
+function insertBox(){
+	var box = $("<div>").attr("class", "emptyBox").attr("id", "box" + numberOfBoxes);
+	$(".container").append(box);
+	randomMargin(numberOfBoxes);
+	numberOfBoxes += 1;	
+	$(".emptyBox").css("background-color",colorArray[randomColor]);
+}
+
+for(var a=0; a<difficulty; a++) {
+	insertBox();
+}
+
+//Determine winnner
+$(".emptyBox").click(function(){
+	var answer = $(this).attr("id");
+	console.log(location);
+	console.log(answer);
+	if(location === answer) {
+		$("h1").html("Congratulations! You found me!");
+		$("h1").css("color","green");
+		setTimeout(function(){window.location=window.location.pathname},500);
+	} else {
+		$("h1").html("I am sorry. You couldn't find me");
+		$("h1").css("color","red");
+		setTimeout(function(){window.location=window.location.pathname},500);
+	}
 
 
 
@@ -74,10 +73,10 @@ setTimeout(function() { $("#p1").hide(); }, 800);
 
 
 
+});
 
 
 
 
-
-})
+});
 
