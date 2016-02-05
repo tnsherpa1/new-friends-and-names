@@ -30,7 +30,7 @@ var friends = [
 "Dan F.",
 "Annabelle",
 "Derek",
-"Tak",
+"Tak(Brian)",
 "Josh",
 "Matt",
 "Christina",
@@ -61,20 +61,21 @@ var difficulty=10;
 var location;
 var newBoxId;
 var arrayLength;
-boxPicker = (Math.floor(Math.random()*(difficulty-1)+1));
+boxPicker = (Math.floor(Math.random()*9)+1);
 location = ("box"+boxPicker);
 $("#startMe").click(function() {
 var myImage = $("<img>").attr("src","assets/images/image"+order+".png").attr("class","peek").attr("id","p1");
 //make id and 3 random
 //var myOtherImage = $("<img>").attr("src","assets/images/image"+nonWdiFriends+".jpg").attr("class","nonWdi").attr("id","nonWdiFriends");
 $("#box"+boxPicker).html(myImage);
-console.log(myImage);
+//console.log(myImage);
 //make 3 random
 //$("#box"+boxPicker).html(myOtherImage);
 
 /*------------insert snippet here */
 boxArray.splice(boxPicker,1);
-arrayLength = boxArray.length-1;
+console.log(boxArray);
+arrayLength = boxArray.length;
 newRandomPick = Math.floor((Math.random()*arrayLength)+1);
 newBoxId = boxArray[newRandomPick];
 var myOtherImage = $("<img>").attr("src","assets/images/image"+nonWdiFriends+".jpg").attr("class","nonWdi").attr("id","nonWdiFriends");
@@ -83,18 +84,15 @@ $("#"+newBoxId).html(myOtherImage);
 //alert(""+newBoxId);
 console.log(myOtherImage);
 /*--------------End Snippet Here*/
-setTimeout(function() {$("#p1").hide();}, 1000);
+setTimeout(function() {$("#p1").hide();}, 1500);
 
 //hide p2
-setTimeout(function() {$("#nonWdiFriends").hide();}, 1000);
+setTimeout(function() {$("#nonWdiFriends").hide();}, 1500);
 setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},1000);
 
 
 
 });
-
-
-
 
 //insertBox();
 function insertBox(){
@@ -116,25 +114,17 @@ $(".emptyBox").click(function(){
 	console.log(location);
 	console.log(answer);
 	if(location === answer) {
-		$("h1").html("Congratulations! You found me!");
+		$("h1").html("Congratulations! You found me! What a friend");
 		$("h1").css("color","green");
-		setTimeout(function(){window.location=window.location.pathname},500);
+		setTimeout(function(){window.location=window.location.pathname},1000);
 	} else {
-		$("h1").html("I am sorry. You couldn't find me");
-		$("h1").css("color","red");
-		setTimeout(function(){window.location=window.location.pathname},500);
+		var sadImg = $("<img>").attr("src","assets/images/sad.jpg").attr("id","sadImage");
+		console.log(sadImg);
+		$(".container").html(sadImg);
+		setTimeout(function(){window.location=window.location.pathname},5000);
 	}
 
-
-
-
-
-
-
 });
-
-
-
 
 });
 
