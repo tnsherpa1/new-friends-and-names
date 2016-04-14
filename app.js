@@ -49,7 +49,7 @@ var friends = [
 //console.log(friends);
 //console.log(colorArray.length);
 
-randomColor = Math.floor((Math.random()*11)+1);
+randomColor = Math.floor((Math.random()*10)+1);
 randomFriends = Math.floor((Math.random()*32)+1);
 nonWdiFriends = Math.floor((Math.random()*10)+40);
 var order = randomFriends;
@@ -84,10 +84,10 @@ $("#"+newBoxId).html(myOtherImage);
 //alert(""+newBoxId);
 console.log(myOtherImage);
 /*--------------End Snippet Here*/
-setTimeout(function() {$("#p1").hide();}, 1500);
+setTimeout(function() {$("#p1").hide();}, 1000);
 
 //hide p2
-setTimeout(function() {$("#nonWdiFriends").hide();}, 1500);
+setTimeout(function() {$("#nonWdiFriends").hide();}, 1000);
 setTimeout(function(){$("h1").html("Where is "+ friends[randomFriends]+"?");},1000);
 
 
